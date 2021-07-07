@@ -1,0 +1,32 @@
+<%- include('./partials/head.ejs'); %>
+
+<body>
+<%- include('./partials/navbar.ejs'); %>
+
+<img src="./img/miami.jpg" class="img-capa"  alt="" >
+
+    <div class="container">
+        <% vagas.forEach(vagas=> { %>    
+            <div class="card mt-5 p-4">
+                <div class="d-flex justify-content-between">
+                     <div class="d-flex">
+                           <div>
+                             <img class="img" src="https://images.pexels.com/photos/1779487/pexels-photo-1779487.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="">
+                           </div>
+                           <div>
+                             <h3 class="pt-2"><%= vagas.titulo %></h3>
+                             <p><%= vagas.empresa %></p>
+                             <p>R$<%= vagas.salario %></p>
+                           </div>
+                     </div>
+                      <div>
+                       <a href="/descricaovaga/<%= vagas.id %>"> <button class="btn btn-primary mt-5">Ver Vaga</button></a>
+                      </div>
+                </div>            
+           </div>
+        <%})%>
+    </div>
+
+<%- include('./partials/scriptsBootstrap.ejs'); %>
+</body>
+</html>

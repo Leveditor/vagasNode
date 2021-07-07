@@ -1,0 +1,32 @@
+<%- include('./partials/head.ejs'); %>
+
+    <body>
+        <%- include('./partials/navbar.ejs'); %>
+            <h2 class="text-center mt-5 mb-5">Divulgue a vaga preenchendo o formulário</h2>
+
+            <form method="POST" action="/salvarvaga">
+                <div class="card container teste">
+                    <div class="container p-3"> 
+                        <label class="pb-2">Titulo da vaga:</label>
+                        <input placeholder="Digite o titulo da vaga" type="text" class="form-control" name='titulo'>
+
+                        <label class="pb-2 mt-4">Empresa contratante:</label>
+                        <input placeholder="Digite o da empresa" type="text" class="form-control" name='empresa'>
+
+                        <label class="pb-2 mt-4">E-mail para contato:</label>
+                        <input placeholder="Digite o da empresa" type="text" class="form-control" name='email'>
+
+                        <label class="pb-2 mt-4">Salário oferecido:</label>
+                        <input placeholder="Digite o salário" type="text" class="form-control" name='salario'>
+
+                        <label class="mt-4 pb-2">Descrição da vaga</label>
+                        <textarea cols="30" rows="10" placeholder="Digite a descrição da vaga" class="form-control" name='descricao'></textarea>
+                        <button class="btn btn-success mt-3">Cadastrar Vaga</button>
+                    </div>
+                </div>
+            </form>
+
+            <%- include('./partials/scriptsBootstrap.ejs'); %>
+    </body>
+
+    </html>

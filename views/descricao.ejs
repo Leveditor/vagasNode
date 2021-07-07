@@ -1,0 +1,18 @@
+<%- include('./partials/head.ejs'); %>
+
+    <body>
+
+        <!-- DESCRIÇÃO DA VAGA -->
+        <%- include('./partials/navbar.ejs'); %>
+            <div class="container card mt-5 p-4">
+                <h2><%= vaga.titulo %></h2>
+                <hr>
+                <h4>Descrição: </h4>
+                <p><%= vaga.descricao %></p>
+
+            </div>
+
+            <%- include('./partials/scriptsBootstrap'); %>
+    </body>
+
+    </html>
