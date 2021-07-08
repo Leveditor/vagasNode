@@ -3,7 +3,20 @@
 <body>
 <%- include('./partials/navbar.ejs'); %>
 
-<img src="./img/miami.jpg" class="img-capa"  alt="" >
+<div class="img-capa">
+  <div class="container">
+    <form action="/" method="GET">
+      <div class="d-flex">
+        <div>
+          <input type="text" class="form-control input-pesquisa" name="job" placeholder="Pesquisa pela vaga">
+        </div>
+        <div>
+          <button type="submit" class="btn btn-primary">Buscar vaga</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
 
     <div class="container">
         <% vagas.forEach(vagas=> { %>    
@@ -11,7 +24,7 @@
                 <div class="d-flex justify-content-between">
                      <div class="d-flex">
                            <div>
-                             <img class="img" src="https://images.pexels.com/photos/1779487/pexels-photo-1779487.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="">
+                             <img class="img-empresa" src="https://images.pexels.com/photos/1779487/pexels-photo-1779487.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="">
                            </div>
                            <div>
                              <h3 class="pt-2"><%= vagas.titulo %></h3>
@@ -25,6 +38,7 @@
                 </div>            
            </div>
         <%})%>
+        
     </div>
 
 <%- include('./partials/scriptsBootstrap.ejs'); %>

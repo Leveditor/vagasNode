@@ -2,6 +2,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const connection = require('./database/database');
 const Vagas = require('./database/vagas');
+const Sequelize = require('sequelize');
+const Op = Sequelize.Op;
 
 const app = express();
 
@@ -24,18 +26,47 @@ app.use(bodyParser.json());
 
 // Criando rota Home
 app.get('/', (req, res) => {
-    Vagas.findAll({
-        raw: true, order: [
-            // Colocando em ordem decrecente
-            ['id', 'DESC']
-        ]
-    }).then(vagas => {
-        // renderizando index.ejs
-        res.render('index', {
-            // recebendo as variaveis do banco de dados
-            vagas: vagas
-        });
-    })
+    let search = req.query.job;
+    let query = '%'+search+'%';
+    
+
+    if(!search) {
+        Vagas.findAll({
+            raw: true, order: [
+                // Colocando em ordem decrecente
+                ['id', 'DESC']
+            ]
+        }).then((vagas, search) => {
+            // renderizando index.ejs
+            res.render('index', {
+                // recebendo as variaveis do banco de dados
+                vagas: vagas,
+                search: search,
+                
+            });
+        })
+        .catch(err => console.log(err))
+    }else {
+        Vagas.findAll({
+            raw: true, 
+            where: {titulo: {[Op.like]: query}},
+            order: [
+                // Colocando em ordem decrecente
+                ['id', 'DESC']
+            ]
+        }).then((vagas, search) => {
+            // renderizando index.ejs
+            res.render('index', {
+                // recebendo as variaveis do banco de dados
+                vagas: vagas,
+                search: search,
+                
+                
+            });
+        })
+        .catch(err => console.log(err))
+    }
+    
 });
 
 // Criando rota para abrir novas vagas
@@ -71,7 +102,7 @@ app.get('/descricaovaga/:id', (req, res) => {
     var id = req.params.id;
 
     Vagas.findOne({
-        where: { titulo: titulo }
+        where: { id: id }
     }).then(vaga => {
         if(vaga != undefined) { // Se a vaga for encontrada
             res.render('descricao', {
